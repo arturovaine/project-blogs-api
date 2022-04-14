@@ -1,12 +1,17 @@
-module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('User', {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'User', {
+      id: DataTypes.INTEGER,
       displayName: DataTypes.STRING,
       email: DataTypes.STRING,
       password: DataTypes.STRING,
       image: DataTypes.STRING,
-  });
-  return User;
-};
+  },
+  {
+    timestamps: false,
+    tabelName: 'users',
+  },
+);
 
 //   {
 //     "id": 1,

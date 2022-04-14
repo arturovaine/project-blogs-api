@@ -1,9 +1,14 @@
-module.exports = (sequelize, DataTypes) => {
-  const Category = sequelize.define('Category', {
+module.exports = (sequelize, DataTypes) =>
+  sequelize.define(
+    'Category', {
+      id: DataTypes.INTEGER,
       name: DataTypes.STRING,
-  });
-  return Category;
-};
+  },
+  {
+    timestamps: false,
+    tabelName: 'categories',
+  },
+);
 
 // {
 //     "id": 18,
