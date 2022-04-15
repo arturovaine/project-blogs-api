@@ -1,13 +1,13 @@
 module.exports = (sequelize, DataTypes) =>
   sequelize.define(
-    'Category', {
+    'Categories', {
       id: DataTypes.INTEGER,
       name: DataTypes.STRING,
-  },
-  {
-    timestamps: false,
-    tabelName: 'categories',
-  },
+    },
+    {
+      timestamps: false,
+      tabelName: 'Categories',
+    },
 );
 
 // {

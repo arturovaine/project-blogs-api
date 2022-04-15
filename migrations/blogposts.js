@@ -9,6 +9,9 @@
 //     "updated": "2011-08-01T19:58:51.947Z",
 // }
 
+// DATEONLY => 2022-01-17
+// DATE => 2022-01-17 04:33:12
+
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('BlogPosts', {

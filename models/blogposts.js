@@ -1,18 +1,23 @@
-module.exports = (sequelize, DataTypes) =>
-  sequelize.define(
+module.exports = (sequelize, DataTypes) => {
+  const BlogPost = sequelize.define(
     'BlogPost', {
-    id: DataTypes.INTEGER,
-    title: DataTypes.STRING,
-    content: DataTypes.STRING,
-    userId: DataTypes.STRING,
-    published: DataTypes.DATE,
-    updated: DataTypes.DATE,
-  },
-  {
-    timestamps: false,
-    tabelName: 'blogposts',
-  },
+      id: DataTypes.INTEGER,
+      title: DataTypes.STRING,
+      content: DataTypes.STRING,
+      userId: DataTypes.STRING,
+      published: DataTypes.DATE,
+      updated: DataTypes.DATE,
+    },
+    {
+      timestamps: false,
+      tabelName: 'BlogPosts',
+    },
 );
+BlogPost.associate = (models) => {
+  BlogPost.hasOne(models.User, { foreignKey: 'userId', as: 'id' });
+};
+return BlogPost;
+};
 
 // {
 //     "id": 21,
