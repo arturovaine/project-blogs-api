@@ -1,4 +1,4 @@
-module.exports = (sequelize, DataTypes) =>
+const User = (sequelize, DataTypes) =>
   sequelize.define(
     'User', {
       id: DataTypes.INTEGER,
@@ -12,6 +12,8 @@ module.exports = (sequelize, DataTypes) =>
       tabelName: 'Users',
     },
 );
+
+module.exports = User;
 
 //   {
 //     "id": 1,

@@ -1,6 +1,6 @@
-module.exports = (sequelize, DataTypes) =>
+const PostsCategory = (sequelize, DataTypes) =>
   sequelize.define(
-    'PostsCategories', {
+    'PostsCategory', {
       postId: DataTypes.INTEGER,
       categoryId: DataTypes.STRING,
     },
@@ -9,6 +9,8 @@ module.exports = (sequelize, DataTypes) =>
       tabelName: 'PostsCategories',
     },
 );
+
+module.exports = PostsCategory;
 
 // {
 //     "postId": 50,
