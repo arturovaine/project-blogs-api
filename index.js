@@ -5,8 +5,16 @@ const app = express();
 
 app.use(express.json());
 
-const { isValidUser } = require('./middlewares');
-const userController = require('./controllers/userController');
+const {
+  // isValidUser
+  isValidDisplayName,
+  isValidEmail,
+  isValidPassword,
+} = require('./middlewares');
+
+const { authMiddleware } = require('./middlewares/auth');
+
+const { userController } = require('./controllers/userController');
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (request, response) => {
@@ -40,7 +48,12 @@ app.get('/', (request, response) => {
 // Erros do cliente (400-499)
 // Erros do servidor (500-599)
 
-app.post('/user', isValidUser, userController);
+app.post('/user', // () => console.log('teste'));
+              isValidDisplayName,
+              isValidEmail,
+              isValidPassword,
+              authMiddleware,
+              userController);
 
 // app.post('/login', loginController);
 // app.get('/user', userController);
@@ -55,6 +68,8 @@ app.post('/user', isValidUser, userController);
 // app.delete('/user/me', userController);
 // app.delete('/post/search?q=:searchTerm', postController);
 
-//
+// const errorHandler = (err,req,res,next) => { ... res.status(...).json({ message: err })}
+// const errorHandler = require('./middlewares/errorHandler');
+// app.use(errorHandler);
 
 app.listen(3000, () => console.log('ouvindo porta 3000!'));
