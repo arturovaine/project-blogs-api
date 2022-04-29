@@ -1,8 +1,8 @@
 const PostsCategory = (sequelize, DataTypes) =>
   sequelize.define(
     'PostsCategory', {
-      postId: DataTypes.INTEGER,
-      categoryId: DataTypes.STRING,
+      // postId: DataTypes.INTEGER,
+      // categoryId: DataTypes.STRING,
     },
     {
       timestamps: false,

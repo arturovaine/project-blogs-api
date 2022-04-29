@@ -1,24 +1,21 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const { JWT_SECRET } = process.env;
 
-const jwtConfig = { algorithms: ['HS256'] };
+const jwtConfig = {
+  expiresIn: '7d',
+  algorithm: 'HS256',
+};
 
-const authMiddleware = (req, res, next) => {
-  const token = req.headers.authorization;
+const authMiddleware = async (req, _res, next) => {
+  const { displayName, email, password, image } = req.body;
+  
+    const token = jwt.sign({ displayName, email, password, image }, JWT_SECRET, jwtConfig);
 
-  try {
-    // const payload = jwt.verify(token, JWT_SECRET_KEY, jwtConfig);
-    // const { username } = jwt.verify(token, JWT_SECRET_KEY, jwtConfig);
-
-    const decoded = jwt.verify(token, JWT_SECRET);
-
-    console.log(decoded);
-
+    console.log(token);
+  
     next();
-  } catch (err) {
-    res.status(401).json({ code: 'Unauthorized', message: err.message });
-  }
 };
 
 module.exports = {

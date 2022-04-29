@@ -1,7 +1,7 @@
 const Category = (sequelize, DataTypes) =>
   sequelize.define(
     'Category', {
-      id: DataTypes.INTEGER,
+      // id: DataTypes.INTEGER,
       name: DataTypes.STRING,
     },
     {

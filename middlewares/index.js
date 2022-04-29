@@ -51,7 +51,8 @@ const isValidDisplayName = (req, res, next) => {
 
 const isValidEmail = (req, res, next) => {
   const { email } = req.body;
-  const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+  // const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
+  const regex = /\S+@\S+\.\S+/;
   if (!email) {
     return res.status(400).json({
       message: '"email" is required',
@@ -77,7 +78,7 @@ const isValidPassword = (req, res, next) => {
       message: '"password" is required',
     });
   }
-  if (password.length < 6) {
+  if (password.length !== 6) {
     return res.status(400).json({
       message: '"password" length must be 6 characters long',
     });
