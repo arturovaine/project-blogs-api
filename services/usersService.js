@@ -2,8 +2,8 @@ const { User } = require('../models');
 
 const getAllUsers = async () => user.findAllClean();
 
-const login = async (username, password) => {
-  const user = await User.findOne({ where: { username }});
+const login = async (email, password) => {
+  const user = await User.findOne({ where: { email }});
 
   if (!user) {
     const err = new Error();

@@ -5,23 +5,20 @@ const { User } = require('../models');
 
 const { JWT_SECRET } = process.env;
 
-// const jwtConfig = {
-//   expiresIn: '7d',
-//   algorithm: 'HS256',
-// };
+const jwtConfig = {
+  expiresIn: '7d',
+  algorithm: 'HS256',
+};
 
 const userController = async (req, res) => {
-    const token = req.headers.authorization;
-
     try {
-      const decoded = jwt.verify(token, JWT_SECRET);
-      const { displayName, email, password, image } = req.body;
+      const { displayName, email, password, image } = req.body;      
 
-      await User.create({ displayName, email, password, image });
+      const { dataValues: { id } } = await User.create({ displayName, email, password, image });
+      
+      const token = jwt.sign({ displayName, email, password, image, id }, JWT_SECRET, jwtConfig);
 
-      console.log('decoded:', decoded);
-
-      return res.status(201).json({ decoded });
+      return res.status(201).json({ token });
     } catch (err) {
       res.status(401).json({ code: 'Unauthorized', message: err.message });
     }
