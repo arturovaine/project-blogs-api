@@ -123,11 +123,20 @@ const isValidPassword = (req, res, next) => {
 
 const { User } = require('../models');
 
-const isValidUser = async (req, res, next) => {
+const isValidUserToSignIn = async (req, res, next) => {
+  const { email } = req.body; 
+  const userToBeRegistered = await User.findOne({ where: { email } });
+  if (userToBeRegistered) {
+    return res.status(409).json({ message: 'User already registered' });
+  }
+  next();
+};
+
+const isValidUserToLogIn = async (req, res, next) => {
   const { email } = req.body; 
   const registeredUser = await User.findOne({ where: { email } });
-  if (registeredUser) {
-    return res.status(409).json({ message: 'User already registered' });
+  if (!registeredUser) {
+    return res.status(400).json({ message: 'Invalid fields' });
   }
   next();
 };
@@ -141,5 +150,6 @@ module.exports = {
   isTherePassword,
   isNotEmptyPassword,
   isValidPassword,
-  isValidUser,
+  isValidUserToSignIn,
+  isValidUserToLogIn,
 };
