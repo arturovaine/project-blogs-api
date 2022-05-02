@@ -49,15 +49,29 @@ const isValidDisplayName = (req, res, next) => {
 // return res.status(400).json({ message: "\"email\" must be a valid email" });
 // return res.status(400).json({ message: "\"email\" is required" });
 
-const isValidEmail = (req, res, next) => {
+const isThereEmail = (req, res, next) => {
   const { email } = req.body;
-  // const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+\.([a-z]+)?$/i;
-  const regex = /\S+@\S+\.\S+/;
-  if (!email) {
+  if (email === undefined) {
     return res.status(400).json({
       message: '"email" is required',
     });
   }
+  next();
+};
+
+const isNotEmptyEmail = (req, res, next) => {
+  const { email } = req.body;
+  if (email === '') {
+    return res.status(400).json({
+      message: '"email" is not allowed to be empty',
+    });
+  }
+  next();
+};
+
+const isValidEmail = (req, res, next) => {
+  const { email } = req.body;
+  const regex = /\S+@\S+\.\S+/;
   if (!email.match(regex)) {
     return res.status(400).json({
       message: '"email" must be a valid email',
@@ -70,14 +84,31 @@ const isValidEmail = (req, res, next) => {
 // return res.status(400).json({ message: "\"password\" is required" });
 // return res.status(400).json({ message: "\"password\" length must be 6 characters long" });
 
-const isValidPassword = (req, res, next) => {
+const isTherePassword = (req, res, next) => {
   const { password } = req.body;
 
-  if (!password) {
+  if (password === undefined) {
     return res.status(400).json({
       message: '"password" is required',
     });
   }
+  next();
+};
+
+const isNotEmptyPassword = (req, res, next) => {
+  const { password } = req.body;
+
+  if (password === '') {
+    return res.status(400).json({
+      message: '"password" is not allowed to be empty',
+    });
+  }
+  next();
+};
+
+const isValidPassword = (req, res, next) => {
+  const { password } = req.body;
+
   if (password.length !== 6) {
     return res.status(400).json({
       message: '"password" length must be 6 characters long',
@@ -88,6 +119,7 @@ const isValidPassword = (req, res, next) => {
 
 // Caso exista uma pessoa com o mesmo email na base, deve-se retornar o seguinte erro:
 // return res.status(409).json({ message: "User already registered" });
+// -> https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
 
 const { User } = require('../models');
 
@@ -103,7 +135,11 @@ const isValidUser = async (req, res, next) => {
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
+  isThereEmail,
   isValidEmail,
+  isNotEmptyEmail,
+  isTherePassword,
+  isNotEmptyPassword,
   isValidPassword,
   isValidUser,
 };
