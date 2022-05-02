@@ -89,10 +89,21 @@ const isValidPassword = (req, res, next) => {
 // Caso exista uma pessoa com o mesmo email na base, deve-se retornar o seguinte erro:
 // return res.status(409).json({ message: "User already registered" });
 
+const { User } = require('../models');
+
+const isValidUser = async (req, res, next) => {
+  const { email } = req.body; 
+  const registeredUser = await User.findOne({ where: { email } });
+  if (registeredUser) {
+    return res.status(409).json({ message: 'User already registered' });
+  }
+  next();
+};
+
 module.exports = {
-  // isValidUser,
   // authMiddleware,
   isValidDisplayName,
   isValidEmail,
   isValidPassword,
+  isValidUser,
 };

@@ -10,6 +10,7 @@ const {
   isValidDisplayName,
   isValidEmail,
   isValidPassword,
+  isValidUser,
 } = require('./middlewares');
 
 // const { authMiddleware } = require('./middlewares/auth');
@@ -26,6 +27,7 @@ app.post('/user', // () => console.log('teste'));
               isValidEmail,
               isValidPassword,
               // Validar que não é possível cadastrar um usuário com email já existente
+              isValidUser,
               userController);
 
 // app.post('/login', loginController);
