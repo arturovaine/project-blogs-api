@@ -1,4 +1,4 @@
-const PostsCategory = (sequelize, DataTypes) =>
+const PostsCategory = (sequelize, _DataTypes) =>
   sequelize.define(
     'PostsCategory', {
       // postId: DataTypes.INTEGER,
