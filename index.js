@@ -26,7 +26,7 @@ const {
 
 // const { authMiddleware } = require('./middlewares/auth');
 
-const { userController } = require('./controllers/userController');
+const { postUserController } = require('./controllers/postUserController');
 const { loginController } = require('./controllers/loginController');
 const { getUsersController } = require('./controllers/getUsersController');
 const { getUserByIdController } = require('./controllers/getUserByIdController');
@@ -49,7 +49,7 @@ app.post('/user', // () => console.log('teste'));
               isNotEmptyPassword,
               isValidPassword,
               isValidUserToSignIn,
-              userController);
+              postUserController);
 
 app.post('/login',
               isThereEmail,

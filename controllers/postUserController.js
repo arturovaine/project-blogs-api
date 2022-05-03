@@ -10,7 +10,7 @@ const jwtConfig = {
   algorithm: 'HS256',
 };
 
-const userController = async (req, res) => {
+const postUserController = async (req, res) => {
     try {
       const { displayName, email, password, image } = req.body;      
 
@@ -25,5 +25,5 @@ const userController = async (req, res) => {
 };
 
 module.exports = {
-  userController,
+  postUserController,
 };
