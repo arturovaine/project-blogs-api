@@ -98,10 +98,6 @@ const isValidUserToLogIn = async (req, res, next) => {
 };
 
 const isThereToken = async (req, res, next) => {
-  // try{}
-  
-  // console.log('isThereToken:-->', jwt.verify(req.headers.authorization, JWT_SECRET));
-
   if (!req.headers.authorization) {
     return res.status(401).json({ message: 'Token not found' });
   }
@@ -130,6 +126,27 @@ const isThereCategoryName = async (req, res, next) => {
   next();
 };
 
+const isTherePostTitle = async (req, res, next) => {
+  if (!req.body.title) {
+    return res.status(400).json({ message: '"title" is required' });
+  }
+  next();
+};
+
+const isTherePostContent = async (req, res, next) => {
+  if (!req.body.content) {
+    return res.status(400).json({ message: '"content" is required' });
+  }
+  next();
+};
+
+const isTherePostCategoryIds = async (req, res, next) => {
+  if (!req.body.categoryIds) {
+    return res.status(400).json({ message: '"categoryIds" is required' });
+  }
+  next();
+};
+
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
@@ -144,6 +161,9 @@ module.exports = {
   isThereToken,
   isValidToken,
   isThereCategoryName,
+  isTherePostTitle,
+  isTherePostContent,
+  isTherePostCategoryIds,
 };
 
 // const teste = {

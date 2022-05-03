@@ -19,6 +19,9 @@ const {
   isThereToken,
   isValidToken,
   isThereCategoryName,
+  isTherePostTitle,
+  isTherePostContent,
+  isTherePostCategoryIds,
 } = require('./middlewares');
 
 // const { authMiddleware } = require('./middlewares/auth');
@@ -29,7 +32,7 @@ const { getUsersController } = require('./controllers/getUsersController');
 const { getUserByIdController } = require('./controllers/getUserByIdController');
 const { postCategoriesController } = require('./controllers/postCategoriesController');
 const { getCategoriesController } = require('./controllers/getCategoriesController');
-// const { postPostController } = require('./controllers/postPostController');
+const { postPostController } = require('./controllers/postPostController');
 const { getPostsController } = require('./controllers/getPostsController');
 
 // não remova esse endpoint, e para o avaliador funcionar
@@ -78,7 +81,15 @@ app.get('/categories',
               isThereToken,
               isValidToken,
               getCategoriesController);
-// app.post('/post', postPostController);
+
+app.post('/post',
+              isTherePostTitle,
+              isTherePostContent,
+              isTherePostCategoryIds,
+              isThereToken,
+              isValidToken,
+              postPostController);
+
 app.get('/post', getPostsController);
 
 // app.put('/post/:id', putPostController);
