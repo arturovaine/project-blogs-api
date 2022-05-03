@@ -25,7 +25,7 @@ const {
 const { userController } = require('./controllers/userController');
 const { loginController } = require('./controllers/loginController');
 const { getUsersController } = require('./controllers/getUsersController');
-// const { getUserByIdController } = require('./controllers/getUserByIdController');
+const { getUserByIdController } = require('./controllers/getUserByIdController');
 // const { postCategoriesController } = require('./controllers/postCategoriesController');
 const { getCategoriesController } = require('./controllers/getCategoriesController');
 // const { postPostController } = require('./controllers/postPostController');
@@ -47,7 +47,7 @@ app.post('/user', // () => console.log('teste'));
               isValidUserToSignIn,
               userController);
 
-app.post('/login', // () => console.log('teste'));
+app.post('/login',
               isThereEmail,
               isNotEmptyEmail,
               isValidEmail,
@@ -62,7 +62,11 @@ app.get('/user',
               isValidToken,
               getUsersController);
 
-// app.get('/user/:id', getUserByIdController);
+app.get('/user/:id',
+              isThereToken,
+              isValidToken,
+              getUserByIdController);
+
 // app.post('/categories', postCategoriesController);
 app.get('/categories',
               isThereToken,

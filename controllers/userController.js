@@ -14,7 +14,7 @@ const userController = async (req, res) => {
     try {
       const { displayName, email, password, image } = req.body;      
 
-      const { dataValues: { id } } = await User.create({ displayName, email, password, image });
+      const { dataValues: { id } } = await User.findOne({ displayName, email, password, image });
       
       const token = jwt.sign({ displayName, email, password, image, id }, JWT_SECRET, jwtConfig);
 
