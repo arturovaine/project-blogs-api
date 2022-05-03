@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+require('dotenv').config();
 
 const { JWT_SECRET } = process.env;
 
@@ -97,24 +98,16 @@ const isValidUserToLogIn = async (req, res, next) => {
 };
 
 const isThereToken = async (req, res, next) => {
-  const { token } = req.headers.authorization;
+  console.log('isThereToken:-->', jwt.verify(req.headers.authorization, JWT_SECRET));
 
-  console.log('token:', token);
-  console.log('req.body:', req.body);
-  console.log('req.headers.authorization: ', req.headers.authorization);
-
-  if (token === undefined) {
+  if (req.headers.authorization === undefined) {
     return res.status(401).json({ message: 'Token not found' });
   }
   next();
 };
 
 const isValidToken = async (req, res, next) => {
-  const { token } = req.headers.authorization;
-
-  console.log('teste2');
-  
-  const decoded = jwt.verify(token, JWT_SECRET);
+  const decoded = jwt.verify(req.headers.authorization, JWT_SECRET);
 
   const user = await User.findOne({ where: { email: decoded.email } });
 

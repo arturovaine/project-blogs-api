@@ -25,6 +25,11 @@ const {
 const { userController } = require('./controllers/userController');
 const { loginController } = require('./controllers/loginController');
 const { getUsersController } = require('./controllers/getUsersController');
+// const { getUserByIdController } = require('./controllers/getUserByIdController');
+// const { postCategoriesController } = require('./controllers/postCategoriesController');
+const { getCategoriesController } = require('./controllers/getCategoriesController');
+// const { postPostController } = require('./controllers/postPostController');
+const { getPostsController } = require('./controllers/getPostsController');
 
 // não remova esse endpoint, e para o avaliador funcionar
 app.get('/', (request, response) => {
@@ -59,9 +64,12 @@ app.get('/user',
 
 // app.get('/user/:id', getUserByIdController);
 // app.post('/categories', postCategoriesController);
-// app.get('/categories', getCategoriesController);
+app.get('/categories',
+              isThereToken,
+              isValidToken,
+              getCategoriesController);
 // app.post('/post', postPostController);
-// app.get('/post', getPostsController);
+app.get('/post', getPostsController);
 
 // app.put('/post/:id', putPostController);
 // app.delete('/post/:id', postController);
