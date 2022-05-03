@@ -123,6 +123,13 @@ const isValidToken = async (req, res, next) => {
   }
 };
 
+const isThereCategoryName = async (req, res, next) => {
+  if (!req.body.name) {
+    return res.status(400).json({ message: '"name" is required' });
+  }
+  next();
+};
+
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
@@ -136,6 +143,7 @@ module.exports = {
   isValidUserToLogIn,
   isThereToken,
   isValidToken,
+  isThereCategoryName,
 };
 
 // const teste = {

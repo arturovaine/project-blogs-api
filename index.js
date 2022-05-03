@@ -18,6 +18,7 @@ const {
   isValidUserToLogIn,
   isThereToken,
   isValidToken,
+  isThereCategoryName,
 } = require('./middlewares');
 
 // const { authMiddleware } = require('./middlewares/auth');
@@ -26,7 +27,7 @@ const { userController } = require('./controllers/userController');
 const { loginController } = require('./controllers/loginController');
 const { getUsersController } = require('./controllers/getUsersController');
 const { getUserByIdController } = require('./controllers/getUserByIdController');
-// const { postCategoriesController } = require('./controllers/postCategoriesController');
+const { postCategoriesController } = require('./controllers/postCategoriesController');
 const { getCategoriesController } = require('./controllers/getCategoriesController');
 // const { postPostController } = require('./controllers/postPostController');
 const { getPostsController } = require('./controllers/getPostsController');
@@ -67,7 +68,12 @@ app.get('/user/:id',
               isValidToken,
               getUserByIdController);
 
-// app.post('/categories', postCategoriesController);
+app.post('/categories',
+              isThereToken,
+              isValidToken,
+              isThereCategoryName,
+              postCategoriesController);
+
 app.get('/categories',
               isThereToken,
               isValidToken,
