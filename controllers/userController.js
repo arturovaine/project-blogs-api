@@ -6,7 +6,7 @@ const { User } = require('../models');
 const { JWT_SECRET } = process.env;
 
 const jwtConfig = {
-  expiresIn: '7d',
+  expiresIn: '1000h',
   algorithm: 'HS256',
 };
 

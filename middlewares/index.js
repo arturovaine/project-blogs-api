@@ -98,23 +98,29 @@ const isValidUserToLogIn = async (req, res, next) => {
 };
 
 const isThereToken = async (req, res, next) => {
-  console.log('isThereToken:-->', jwt.verify(req.headers.authorization, JWT_SECRET));
+  // try{}
+  
+  // console.log('isThereToken:-->', jwt.verify(req.headers.authorization, JWT_SECRET));
 
-  if (req.headers.authorization === undefined) {
+  if (!req.headers.authorization) {
     return res.status(401).json({ message: 'Token not found' });
   }
   next();
 };
 
 const isValidToken = async (req, res, next) => {
-  const decoded = jwt.verify(req.headers.authorization, JWT_SECRET);
+  try {
+    const decoded = jwt.verify(req.headers.authorization, JWT_SECRET);
 
-  const user = await User.findOne({ where: { email: decoded.email } });
+    const user = await User.findOne({ where: { email: decoded.email } });
 
-  if (!user) {
+    if (!user) {
+      return res.status(401).json({ message: 'Expired or invalid token' });
+    }
+    next();
+  } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });
   }
-  next();
 };
 
 module.exports = {
@@ -131,3 +137,12 @@ module.exports = {
   isThereToken,
   isValidToken,
 };
+
+// const teste = {
+//   email: 'lewishamilton@gmail.com',
+//   password: '123456',
+//   iat: 1651553101,
+//   exp: 1652157901,
+// };
+
+// console.log(Date(teste.exp));
