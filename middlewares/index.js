@@ -1,39 +1,8 @@
-// const jwt = require('jsonwebtoken');
+const jwt = require('jsonwebtoken');
 
-// const isValidUser = (req, res, next) => {
-//     const { displayName, email, password, token } = req.body;
-//     // Condicionais
-//     if (email) {
-//       return res.status(400).json({ message: 'User already registered' });
-//   };
-//   next();
-// };
+const { JWT_SECRET } = process.env;
 
-// const SECRET_KEY = 'xablau';
-// const jwtConfig = {
-//   expiresIn: '15m',
-//   algorithm: 'HS256',
-// };
-
-// const authMiddleware = (req, res, next) => {
-//   const token = req.headers.authorization;
-
-//   if (!token) {
-//     return res.status(401).json({ message: 'Token is missing' });
-//   }
-
-//   try {
-//     const decoded = jwt.verify(token, SECRET_KEY);
-//     next();
-//   } catch (err) {
-//     return res.status(401).json({ message: 'Authentication failed' });
-//   }
-//   next();
-// };
-//
-
-// O campo displayName deverá ser uma string com no mínimo de 8 caracteres;
-// return res.status(400).json({ message: "\"displayName\" length must be at least 8 characters long" });
+const { User } = require('../models');
 
 const isValidDisplayName = (req, res, next) => {
   const { displayName } = req.body;
@@ -44,10 +13,6 @@ const isValidDisplayName = (req, res, next) => {
   }
   next();
 };
-
-// O campo email será considerado válido se tiver o formato <prefixo>@<domínio> e se for único. Ele é obrigatório.
-// return res.status(400).json({ message: "\"email\" must be a valid email" });
-// return res.status(400).json({ message: "\"email\" is required" });
 
 const isThereEmail = (req, res, next) => {
   const { email } = req.body;
@@ -79,10 +44,6 @@ const isValidEmail = (req, res, next) => {
   }
   next();
 };
-
-// A senha deverá conter 6 caracteres. Ela é obrigatória.
-// return res.status(400).json({ message: "\"password\" is required" });
-// return res.status(400).json({ message: "\"password\" length must be 6 characters long" });
 
 const isTherePassword = (req, res, next) => {
   const { password } = req.body;
@@ -117,12 +78,6 @@ const isValidPassword = (req, res, next) => {
   next();
 };
 
-// Caso exista uma pessoa com o mesmo email na base, deve-se retornar o seguinte erro:
-// return res.status(409).json({ message: "User already registered" });
-// -> https://sequelize.org/docs/v6/core-concepts/model-querying-finders/
-
-const { User } = require('../models');
-
 const isValidUserToSignIn = async (req, res, next) => {
   const { email } = req.body; 
   const userToBeRegistered = await User.findOne({ where: { email } });
@@ -141,6 +96,34 @@ const isValidUserToLogIn = async (req, res, next) => {
   next();
 };
 
+const isThereToken = async (req, res, next) => {
+  const { token } = req.headers.authorization;
+
+  console.log('token:', token);
+  console.log('req.body:', req.body);
+  console.log('req.headers.authorization: ', req.headers.authorization);
+
+  if (token === undefined) {
+    return res.status(401).json({ message: 'Token not found' });
+  }
+  next();
+};
+
+const isValidToken = async (req, res, next) => {
+  const { token } = req.headers.authorization;
+
+  console.log('teste2');
+  
+  const decoded = jwt.verify(token, JWT_SECRET);
+
+  const user = await User.findOne({ where: { email: decoded.email } });
+
+  if (!user) {
+    return res.status(401).json({ message: 'Expired or invalid token' });
+  }
+  next();
+};
+
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
@@ -152,4 +135,6 @@ module.exports = {
   isValidPassword,
   isValidUserToSignIn,
   isValidUserToLogIn,
+  isThereToken,
+  isValidToken,
 };
