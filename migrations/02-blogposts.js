@@ -1,17 +1,5 @@
 'use strict';
 
-// {
-//     "id": 21,
-//     "title": "Latest updates, August 1st",
-//     "content": "The whole text for the blog post goes here in this key",
-//     "userId": 14, // esse é o id que referência usuário que é o autor do post
-//     "published": "2011-08-01T19:58:00.000Z",
-//     "updated": "2011-08-01T19:58:51.947Z",
-// }
-
-// DATEONLY => 2022-01-17
-// DATE => 2022-01-17 04:33:12
-
 module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('BlogPosts', {
@@ -28,7 +16,11 @@ module.exports = {
         type: Sequelize.STRING
       },
       userId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users',
+          key: 'id'
+        }
       },
       published: {
         allowNull: false,

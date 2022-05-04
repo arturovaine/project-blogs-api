@@ -22,6 +22,7 @@ const {
   isTherePostTitle,
   isTherePostContent,
   isTherePostCategoryIds,
+  isValidCategoryId,
 } = require('./middlewares');
 
 // const { authMiddleware } = require('./middlewares/auth');
@@ -86,11 +87,15 @@ app.post('/post',
               isTherePostTitle,
               isTherePostContent,
               isTherePostCategoryIds,
+              isValidCategoryId,
               isThereToken,
               isValidToken,
               postPostController);
 
-app.get('/post', getPostsController);
+app.get('/post',
+              isThereToken,
+              isValidToken,
+              getPostsController);
 
 // app.put('/post/:id', putPostController);
 // app.delete('/post/:id', postController);

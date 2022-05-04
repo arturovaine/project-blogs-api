@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const { JWT_SECRET } = process.env;
 
-const { User } = require('../models');
+const { User, PostsCategories, Category } = require('../models');
 
 const isValidDisplayName = (req, res, next) => {
   const { displayName } = req.body;
@@ -113,6 +113,8 @@ const isValidToken = async (req, res, next) => {
     if (!user) {
       return res.status(401).json({ message: 'Expired or invalid token' });
     }
+    req.userId = user.dataValues.id;
+
     next();
   } catch (err) {
     return res.status(401).json({ message: 'Expired or invalid token' });
@@ -147,6 +149,21 @@ const isTherePostCategoryIds = async (req, res, next) => {
   next();
 };
 
+const isValidCategoryId = async (req, res, next) => {
+  console.log('categories:--->', req.body.categoryIds);
+  try {
+    const { categoryIds } = req.body;
+    const chosenCategoryId = await Category.findAll({ where: { id: categoryIds } });
+    console.log('array', categoryIds);
+    if (chosenCategoryId.length !== categoryIds.length) {
+      return res.status(400).json({ message: '"categoryIds" not found' });
+    }
+    next();
+  } catch (err) {
+    res.status(401).json({ code: 'Unauthorized', message: err.message });
+  }
+};
+
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
@@ -164,6 +181,7 @@ module.exports = {
   isTherePostTitle,
   isTherePostContent,
   isTherePostCategoryIds,
+  isValidCategoryId,
 };
 
 // const teste = {

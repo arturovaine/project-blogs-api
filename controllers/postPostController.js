@@ -1,10 +1,16 @@
-const { BlogPost } = require('../models');
+const { BlogPost, PostsCategory } = require('../models');
 
 const postPostController = async (req, res) => {
     try {
-      const { title, content, categoryIds } = req.body;      
+      const { title, categoryIds, content } = req.body;
 
-      const newBlogPost = await BlogPost.create({ title, content, categoryIds });
+      const newBlogPost = await BlogPost.create({ title, content, userId: req.userId });
+
+      categoryIds.forEach(
+        async (categoryId) => PostsCategory.create(
+          { postId: newBlogPost.dataValues.id, categoryId },
+          ),
+      );
 
       return res.status(201).json(newBlogPost);
     } catch (err) {

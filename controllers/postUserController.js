@@ -11,17 +11,17 @@ const jwtConfig = {
 };
 
 const postUserController = async (req, res) => {
-    try {
-      const { displayName, email, password, image } = req.body;      
+  try {
+    const { displayName, email, password, image } = req.body;      
 
-      const { dataValues: { id } } = await User.create({ displayName, email, password, image });
-      
-      const token = jwt.sign({ displayName, email, password, image, id }, JWT_SECRET, jwtConfig);
+    const { dataValues: { id } } = await User.create({ displayName, email, password, image });
+    
+    const token = jwt.sign({ displayName, email, password, image, id }, JWT_SECRET, jwtConfig);
 
-      return res.status(201).json({ token });
-    } catch (err) {
-      res.status(401).json({ code: 'Unauthorized', message: err.message });
-    }
+    return res.status(201).json({ token });
+  } catch (err) {
+    res.status(401).json({ code: 'Unauthorized', message: err.message });
+  }
 };
 
 module.exports = {
