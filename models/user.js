@@ -6,15 +6,17 @@ module.exports = (sequelize, DataTypes) => {
       password: DataTypes.STRING,
       image: DataTypes.STRING,
     },
-    { timestamps: false, tabelName: 'Users' },
+    { timestamps: false },
   );
 
-  // User.associate = (models) => {
-  //   User.hasMany(models.BlogPost, {
-  //     as: 'blogpost',
-  //     foreignKey: 'userId',
-  //   });
-  // };
+  // users: id <-> blogposts: userId
+
+  User.associate = (models) => {
+    User.hasMany(models.BlogPost, {
+      as: 'blogpost',
+      foreignKey: 'userId',
+    });
+  };
 
   return User;
 };

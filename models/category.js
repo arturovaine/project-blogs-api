@@ -1,13 +1,12 @@
 module.exports = (sequelize, DataTypes) => {
   const Category = sequelize.define(
     'Category', {
-      // id: DataTypes.INTEGER,
       name: DataTypes.STRING,
     },
-    {
-      timestamps: false,
-    },
+    { timestamps: false },
   );
+
+  // categories: id <-> postscategories: categoryId
 
   // Category.associate = (models) => {
   //   Category.belongsTo(models.PostsCategory, {
