@@ -164,6 +164,24 @@ const isValidCategoryId = async (req, res, next) => {
   }
 };
 
+const { Blogpost } = require('../models');
+
+const isValidPostId = async (req, res, next) => {
+  try {
+      const { id } = req.params;
+
+      const postById = await Blogpost.findOne({ where: { id } });
+      
+      if (!postById) {
+        return res.status(404).json({ message: 'Post does not exist' });
+      }
+
+      next();
+    } catch (err) {
+      res.status(401).json({ code: 'Unauthorized', message: err.message });
+    }
+};
+
 module.exports = {
   // authMiddleware,
   isValidDisplayName,
@@ -182,6 +200,7 @@ module.exports = {
   isTherePostContent,
   isTherePostCategoryIds,
   isValidCategoryId,
+  isValidPostId,
 };
 
 // const teste = {

@@ -6,14 +6,7 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false },
   );
 
-  // categories: id <-> postscategories: categoryId
-
-  // Category.associate = (models) => {
-  //   Category.belongsTo(models.PostsCategory, {
-  //     as: 'postscategory',
-  //     foreignKey: 'categoryId',
-  //   });
-  // };
-
   return Category;
 };
+
+// categories: id <-> postscategories: categoryId

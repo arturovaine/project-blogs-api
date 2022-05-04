@@ -10,9 +10,6 @@ module.exports = (sequelize, DataTypes) => {
     { timestamps: false },
   );
 
-  // blogposts: id <-> postscategories: postId
-  // blogposts: userId <-> user: id
-
   BlogPost.associate = (models) => {
     BlogPost.belongsTo(models.User, {
       as: 'user',
@@ -22,3 +19,6 @@ module.exports = (sequelize, DataTypes) => {
 
 return BlogPost;
 };
+
+// blogposts: id <-> postscategories: postId
+// blogposts: userId <-> user: id
