@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const { JWT_SECRET } = process.env;
 
-const { User, PostsCategories, Category } = require('../models');
+const { User, Category } = require('../models');
 
 const isValidDisplayName = (req, res, next) => {
   const { displayName } = req.body;
