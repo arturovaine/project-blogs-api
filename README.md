@@ -27,46 +27,34 @@ Além disto foi considerada a utilização de categorias dos posts, o que demand
 - [Ficha técnica / Requisitos do projeto:](#ficha-técnica--requisitos-do-projeto)
       - [Status HTTP](#status-http)
       - [Estruturas das tabelas:](#estruturas-das-tabelas)
-  - [Features/endpoints:](#featuresendpoints)
+  - [Endpoints:](#endpoints)
     - [1 - Endpoint POST `/user`](#1---endpoint-post-user)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas)
-    - [2 - Sua aplicação deve ter o endpoint POST `/login`](#2---sua-aplicação-deve-ter-o-endpoint-post-login)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-1)
-    - [3 - Sua aplicação deve ter o endpoint GET `/user`](#3---sua-aplicação-deve-ter-o-endpoint-get-user)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-1)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-2)
-    - [4 - Sua aplicação deve ter o endpoint GET `/user/:id`](#4---sua-aplicação-deve-ter-o-endpoint-get-userid)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-2)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-3)
-    - [5 - Sua aplicação deve ter o endpoint POST `/categories`](#5---sua-aplicação-deve-ter-o-endpoint-post-categories)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-3)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-4)
-    - [6 - Sua aplicação deve ter o endpoint GET `/categories`](#6---sua-aplicação-deve-ter-o-endpoint-get-categories)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-4)
-    - [7 - Sua aplicação deve ter o endpoint POST `/post`](#7---sua-aplicação-deve-ter-o-endpoint-post-post)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-5)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-5)
-    - [8 - Sua aplicação deve ter o endpoint GET `/post`](#8---sua-aplicação-deve-ter-o-endpoint-get-post)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-6)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-6)
-    - [9 - Sua aplicação deve ter o endpoint GET `post/:id`](#9---sua-aplicação-deve-ter-o-endpoint-get-postid)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-7)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-7)
-    - [10 - Sua aplicação deve ter o endpoint PUT `/post/:id`](#10---sua-aplicação-deve-ter-o-endpoint-put-postid)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-8)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-8)
-  - [Requisitos Bônus](#requisitos-bônus)
-    - [11 - Sua aplicação deve ter o endpoint DELETE `post/:id`](#11---sua-aplicação-deve-ter-o-endpoint-delete-postid)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-9)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-9)
-    - [12 - Sua aplicação deve ter o endpoint DELETE `/user/me`](#12---sua-aplicação-deve-ter-o-endpoint-delete-userme)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-10)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-10)
-    - [13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`](#13---sua-aplicação-deve-ter-o-endpoint-get-postsearchqsearchterm)
-      - [Os seguintes pontos serão avaliados:](#os-seguintes-pontos-serão-avaliados-11)
-    - [Além disso, as seguintes verificações serão feitas:](#além-disso-as-seguintes-verificações-serão-feitas-11)
 
+    - [2 - Endpoint POST `/login`](#2---endpoint-post-login)
+   
+    - [3 - Endpoint GET `/user`](#3---endpoint-get-user)
+   
+    - [4 - Endpoint GET `/user/:id`](#4---endpoint-get-userid)
+   
+    - [5 - Endpoint POST `/categories`](#5---endpoint-post-categories)
+   
+    - [6 - Endpoint GET `/categories`](#6---endpoint-get-categories)
+
+    - [7 - Endpoint POST `/post`](#7---endpoint-post-post)
+   
+    - [8 - Endpoint GET `/post`](#8---endpoint-get-post)
+     
+    - [9 - Endpoint GET `post/:id`](#9---endpoint-get-postid)
+   
+    - [10 - Endpoint PUT `/post/:id`](#10---endpoint-put-postid)
+  
+    - [11 - Endpoint DELETE `post/:id`](#11---endpoint-delete-postid)
+  
+    - [12 - Endpoint DELETE `/user/me`](#12---endpoint-delete-userme)
+   
+    - [13 - Endpoint GET `post/search?q=:searchTerm`](#13---endpoint-get-postsearchqsearchterm)
+   
+   
 
  
 ---
@@ -125,8 +113,10 @@ Respostas respeitam os [status do protocolo HTTP](https://developer.mozilla.org/
   
   **Dados de exemplo são fictícios, como exemplo apenas**  
 
- 
-## Features/endpoints:
+ ----
+
+
+## Endpoints:
 
 ### 1 - Endpoint POST `/user`
 
@@ -165,65 +155,7 @@ Respostas respeitam os [status do protocolo HTTP](https://developer.mozilla.org/
   ```
   _O token anterior é fictício_
 
-### Além disso, as seguintes verificações serão feitas:
-
-**[Será validado que é possível cadastrar um usuário com sucesso]**
-
-Se o usuário for criado com sucesso o resultado retornado deverá ser conforme exibido abaixo, com um status http `201`:
-
-![Cadastro com sucesso](./public/cadastrodeusuario.png)
-
-**[Será validado que não é possível cadastrar usuário com o campo `displayName` menor que 8 caracteres]**
-
-Se o usuário tiver o campo "displayName" menor que 8 caracteres o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Nome menor que 8](./public/nomemenorque8.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Será validado que não é possível cadastrar usuário com o campo `email` com formato `email: rubinho`]**
-
-Se o usuário tiver o campo "email" com o formato `email: rubinho` o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Email inválido](./public/emailinvalido.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Será validado que não é possível cadastrar usuário com o campo `email` com formato `email: @gmail.com`]**
-
-Se o usuário tiver o campo "email" com o formato `email: @gmail.com` o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Email inválido](./public/emailinvalido2.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Será validado que o campo `email` é obrigatório]**
-
-Se o usuário não tiver campo "email" o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Email obrigatório](./public/emailobrigatorio.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Será validado que não é possível cadastrar usuário com o campo `password` diferente de 6 caracteres]**
-
-Se o usuário tiver o campo "password" menor ou maior que 6 caracteres o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Senha menor que 6](./public/senhamenorque6.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Será validado que o campo `password` é obrigatório]**
-
-Se o usuário não tiver campo "password" o resultado retornado deverá ser conforme exibido abaixo, com um status http `400`:
-
-![Senha Obrigatória](./public/semsenha.png)
-(As contrabarras `\` estão escapando as aspas de dentro da string)
-
-**[Validar que não é possível cadastrar um usuário com email já existente]**
-
-Se o usuário cadastrar o campo "email" com um email que já existe, o resultado retornado deverá ser conforme exibido abaixo, com um status http `409`:
-
-![Usuário Existente](./public/usuariojaexistente.png)
-
-### 2 - Sua aplicação deve ter o endpoint POST `/login`
-
-#### Os seguintes pontos serão avaliados:
+### 2 - Endpoint POST `/login` 
 
 - O corpo da requisição deverá seguir o formato abaixo:
 
@@ -287,9 +219,8 @@ Se o login for com usuário inexistente o resultado retornado deverá ser confor
 
 ![Usuário não existe](./public/usuarionaoexiste.png)
 
-### 3 - Sua aplicação deve ter o endpoint GET `/user`
+### 3 - Endpoint GET `/user`
 
-#### Os seguintes pontos serão avaliados:
 
 - Deve listar todos os **Users** e retorná-los na seguinte estrutura:
 
@@ -326,9 +257,8 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![Token inválido](./public/tokeninvalido.png)
 
-### 4 - Sua aplicação deve ter o endpoint GET `/user/:id`
+### 4 - Endpoint GET `/user/:id`
 
-#### Os seguintes pontos serão avaliados:
 
 - Retorna os detalhes do usuário baseado no `id` da rota. Os dados devem ter o seguinte formato:
 
@@ -369,9 +299,8 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![Listar um usuário com token inválido](./public/tokeninvalidoumusuario.png)
 
-### 5 - Sua aplicação deve ter o endpoint POST `/categories`
+### 5 - Endpoint POST `/categories`
 
-#### Os seguintes pontos serão avaliados:
 
 - Esse endpoint deve receber uma _Categoria_ no corpo da requisição e criá-la no banco. O corpo da requisição deve ter a seguinte estrutura:
 
@@ -410,9 +339,8 @@ Se o token for inexistente o resultado retornado deverá ser conforme exibido ab
 
 ![Cadastrar uma categoria sem token](./public/cadastrarcategoriasemtoken.png)
 
-### 6 - Sua aplicação deve ter o endpoint GET `/categories`
+### 6 - Endpoint GET `/categories`
 
-#### Os seguintes pontos serão avaliados:
 
 - Esse endpoint deve listar todas as Categorias e retorná-las na seguinte estrutura:
 
@@ -450,9 +378,8 @@ Se o token for inexistente o resultado retornado deverá ser conforme exibido ab
 ![Buscar uma categoria sem token](./public/buscarcategoriasemtoken.png)
 
 
-### 7 - Sua aplicação deve ter o endpoint POST `/post`
+### 7 - Endpoint POST `/post`
 
-#### Os seguintes pontos serão avaliados:
 
 - Esse endpoint deve receber um _BlogPost_ no corpo da requisição e criá-lo no banco. O corpo da requisição deve ter a seguinte estrutura:
 
@@ -513,9 +440,8 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/criarposttokeninvalido.png)
 
-### 8 - Sua aplicação deve ter o endpoint GET `/post`
+### 8 - Endpoint GET `/post`
 
-#### Os seguintes pontos serão avaliados:
 
 - Esse endpoint deve listar todos os _BlogPosts_ e retorná-los na seguinte estrutura:
 
@@ -544,8 +470,6 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 ]
 ```
 
-### Além disso, as seguintes verificações serão feitas:
-
 **[Será validado que é possível listar blogpost com sucesso]**
 
 Se listar os blogpost com sucesso o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
@@ -564,9 +488,8 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/listarposttokeninvalido.png)
 
-### 9 - Sua aplicação deve ter o endpoint GET `post/:id`
+### 9 - Endpoint GET `post/:id`
 
-#### Os seguintes pontos serão avaliados:
 
 - Retorna um **BlogPost** com o `id` especificado. O retorno deve ter os seguinte formato:
 
@@ -619,11 +542,8 @@ Se o id do post for inválido o resultado retornado deverá ser conforme exibido
 
 ![Listar um post inexistente](./public/listarumpostinexistente.png)
 
+### 10 - Endpoint PUT `/post/:id`
 
-
-### 10 - Sua aplicação deve ter o endpoint PUT `/post/:id`
-
-#### Os seguintes pontos serão avaliados:
 
 - O endpoint deve receber um **BlogPost** que irá sobrescrever o original com o `id` especificado na URL. Só deve ser permitido para o usuário que criou o **BlogPost**.
 
@@ -691,9 +611,8 @@ Se não conter o campo `content` o resultado retornado deverá ser conforme exib
 
 ## Requisitos Bônus
 
-### 11 - Sua aplicação deve ter o endpoint DELETE `post/:id`
+### 11 - Endpoint DELETE `post/:id`
 
-#### Os seguintes pontos serão avaliados:
 
 - Deleta o post com o `id` especificado. Só deve ser permitido para o usuário que criou o **BlogPost**.
 
@@ -735,9 +654,8 @@ Se o token for inválido o resultado retornado deverá ser conforme exibido abai
 
 ![blogpost com token inválido](./public/deletarpostcomtokeninvalido.png)
 
-### 12 - Sua aplicação deve ter o endpoint DELETE `/user/me`
+### 12 - Endpoint DELETE `/user/me`
 
-#### Os seguintes pontos serão avaliados:
 
 - Utilizando o token de autenticação nos headers, o usuário correspondente deve ser apagado.
 
@@ -761,9 +679,8 @@ Se não conter o token o resultado retornado deverá ser conforme exibido abaixo
 
 ![Deletar sem token](./public/deletarsemtoken.png)
 
-### 13 - Sua aplicação deve ter o endpoint GET `post/search?q=:searchTerm`
+### 13 - Endpoint GET `post/search?q=:searchTerm`
 
-#### Os seguintes pontos serão avaliados:
 
 - Retorna uma array de **BlogPosts** que contenham em seu título, ou conteúdo, o termo pesquisado no `queryParam` da URL. O retorno deve ter o seguinte formato:
 
@@ -798,38 +715,26 @@ Se não conter o token o resultado retornado deverá ser conforme exibido abaixo
 
 **[Será validado que é possível buscar um blogpost pelo `title`]**
 
-Se a buscar for pelo `title` o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
-
-![blogpost com token inválido](./public/buscarpostpelotitle.png)
+Se a buscar for pelo `title` o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`
 
 **[Será validado que é possível buscar um blogpost pelo `content`]**
 
-Se a buscar for pelo `content` o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
-
-![blogpost com token inválido](./public/buscarpostpelocontent.png)
+Se a buscar for pelo `content` o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`
 
 **[Será validado que é possível buscar todos os blogpost quando passa a busca vazia']**
 
-Se a buscar for vazia o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
-
-![blogpost com token inválido](./public/listarpostcampovazio.png)
+Se a buscar for vazia o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`
 
 **[Será validado que é possível buscar um blogpost inexistente e retornar array vazio]**
 
-Se a buscar um post inexistente o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`:
-
-![blogpost com token inválido](./public/listarumpostquenaoexiste.png)
+Se a buscar um post inexistente o resultado retornado deverá ser conforme exibido abaixo, com um status http `200`
 
 **[Será validado que não é possível buscar um blogpost sem o token]**
 
-Se não contém o token o resultado retornado deverá ser conforme exibido abaixo, com um status http `401`:
-
-![blogpost com token inválido](./public/buscarpostsemtoken.png)
+Se não contém o token o resultado retornado deverá ser conforme exibido abaixo, com um status http `401`
 
 **[Será validado que não é possível buscar um blogpost com o token inválido]**
 
-Se o token for inválido o resultado retornado deverá ser conforme exibido abaixo, com um status http `401`:
-
-![blogpost com token inválido](./public/buscarpostcomtokeninvalido.png)
+Se o token for inválido o resultado retornado deverá ser conforme exibido abaixo, com um status http `401`
 
 --- 
